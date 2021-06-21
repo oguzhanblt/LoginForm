@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet,ImageBackground } from 'react-native';
 import Logo from './Logo';
 import EmailAndPassword from'./EmailAndPassword';
 
@@ -10,6 +10,7 @@ import EmailAndPassword from'./EmailAndPassword';
 // create a component
 const LoginForm = () => {
     return (
+            <ImageBackground source={require('../src/image/background.jpg')} style={styles.BackgroundImage}>
         <View style={styles.Container}>
             <View style={styles.logocontainer}>
                 <Logo/>
@@ -18,6 +19,7 @@ const LoginForm = () => {
                 <EmailAndPassword/>
             </View>
         </View>
+        </ImageBackground>
     );
 };
 
@@ -30,13 +32,20 @@ const styles = StyleSheet.create({
     logocontainer:{
         flex: 1,
         justifyContent: 'center',
-        marginTop:-250,
+        marginTop:100,
         alignItems: 'center',
     },
     emailAndPasswordContainer:{
         flex: 1,
         justifyContent: 'center',
+        
 
+    },
+    BackgroundImage: {
+        width: '100%',
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 });
 

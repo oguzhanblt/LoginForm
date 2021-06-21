@@ -34,7 +34,7 @@ class EmailAndPassword extends Component {
         return (
             <View style={styles.container}>
                 <TextInput
-                placeholder="   Email Adresi"
+                placeholder="   Sicil No"
                 style={styles.input}
                 value={this.state.email}
                 onChangeText={email=>this.setState({email})}/>
@@ -43,6 +43,7 @@ class EmailAndPassword extends Component {
                 placeholder="   Şifre"
                 style={styles.input}
                 value={this.state.password}
+                secureTextEntry={true}
                 onChangeText={password=>this.setState({password})}/>
                 
                 
@@ -68,12 +69,14 @@ const styles = StyleSheet.create({
         padding:30
     },
     input:{
-        height:40,
-        backgroundColor:'#FCB000',
-        paddingLeft:10,
-        marginBottom:15,
-        borderRadius:5,
-        fontSize:15
+        width: 300,
+        height: 40,
+        borderWidth: 2,
+        color: 'black',
+        borderRadius: 10,
+        bottom: 20,
+        marginBottom: 10,
+        
     },
     errorText:{
         fontSize:20,
@@ -82,15 +85,14 @@ const styles = StyleSheet.create({
     },
     girisButtonText:{
         textAlign:'center',
-        color:'black',
-        fontWeight:'bold',
-        fontSize:20,
+        color:'white',
+        fontSize:18,
         paddingTop:5
     },
     buttonContainer:{
-        backgroundColor:'#FCB000',
+        backgroundColor:'black',
         padding:5,
-        height:45,  
+        height:50,  
         borderRadius:8,
         marginTop:20
     }

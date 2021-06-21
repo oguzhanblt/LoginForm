@@ -52,8 +52,11 @@ class App extends Component{
   
   render(){
     return(
+      
       <View style={styles.container}>
+         
         {this.renderContent()}
+        
       </View>
     );
   }
@@ -66,6 +69,7 @@ const styles= StyleSheet.create({
     justifyContent:'center',
 
   },
+ 
   
 });
 

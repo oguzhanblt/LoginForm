@@ -1,51 +1,69 @@
 //import liraries
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity,Image, ImageBackground } from 'react-native';
 
 // create a component
 const Articles = () => {
     return (
+             <ImageBackground source={require('../src/image/background.jpg')} style={styles.BackgroundImage}>
         <View style={styles.container}>
+            <TouchableOpacity style={styles.cikisButon} onPress={() => firebase.auth().signOut()} >
+  
+                <Image source={require('../src/image/geriDonus.png')}
+                    style={{ height: 50, width: 50, marginTop: -350, marginLeft: 350 }} resizeMode='contain' />
+            </TouchableOpacity>
             <View style={styles.articlesContainer}>
-                <Text style={styles.heading}>
-                    doğrulama ekranı
-                </Text>
-                <Text style={styles.content}>
-                doğrulama ekrani
-                </Text>
-                <TouchableOpacity style={{padding:20}} onPress={()=> firebase.auth().signOut()} >
-                    <Text style={{color:'#FCB000'}}>
-                        Çıkış
-                    </Text>
+
+                <TouchableOpacity style={styles.buttonContainer}>
+                    <Text style={styles.girisButtonText}>QR Okut</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonContainer}>
+                    <Text style={styles.girisButtonText}>Servis Yoğunluk Sorgula</Text>
                 </TouchableOpacity>
             </View>
         </View>
+            </ImageBackground>
     );
 };
+
 
 // define your styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent:'center',
-        alignItems:'center'
-        
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    articlesContainer:{
-        padding:10,
-        borderBottomColor:'rgba(255,255,255,.7)',
-        borderBottomWidth:2
+    heading: {
+        fontSize: 20,
+        color: 'black',
+        marginTop: 200,
+        marginBottom: 10
     },
-    heading:{
-        fontSize:20,
-        color:'black',
-        marginBottom:10,
-        marginBottom:10
+    content: {
+        marginTop: 200,
+        fontSize: 19,
     },
-    content:{
-        marginTop:10,
-        fontSize:19,
+    girisButtonText: {
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 18,
+        paddingTop: 5
+    },
+    buttonContainer: {
+        backgroundColor: 'black',
+        padding: 5,
+        height: 55,
+        width: 300,
+        borderRadius: 8,
+        marginTop: 20
+    },
+    BackgroundImage: {
+        width: '100%',
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 });
 
