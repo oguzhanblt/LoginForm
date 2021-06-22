@@ -1,15 +1,30 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet,ActivityIndicator } from 'react-native';
+import { firebaseAuth } from '../config';
 
-// create a component
-const Loading = () => {
-    return (
-        <View style={styles.container}>
-            <ActivityIndicator size="large" />
-        </View>
-    );
-};
+
+
+export default class Loading extends React.Component{
+
+    componentDidMount(){
+        firebaseAuth.onAuthStateChanged(user=>{
+            this.props.navigation.navigate(user='LoginForm')
+        })
+    }
+    render(){
+        return(
+            <View style={styles.container}>
+                <Text>
+                    Loading...
+                </Text>
+                <ActivityIndicator size="large"/>
+            </View>
+        )
+    }
+
+
+}
 
 // define your styles
 const styles = StyleSheet.create({
@@ -17,9 +32,5 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
     },
 });
-
-//make this component available to the app
-export default Loading;

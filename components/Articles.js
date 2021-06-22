@@ -1,57 +1,75 @@
-//import liraries
-import React, { Component } from 'react';
-import firebase from 'firebase';
-import { View, Text, StyleSheet, TouchableOpacity,Image, ImageBackground } from 'react-native';
+import *as React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity,Image, Button,ImageBackground } from 'react-native';
+import { firebaseAuth } from '../config';
+import { Component } from 'react';
+import  firebase  from 'firebase';
 
-// create a component
-const Articles = () => {
-    return (
-             <ImageBackground source={require('../src/image/background.jpg')} style={styles.BackgroundImage}>
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.cikisButon} onPress={() => firebase.auth().signOut()} >
-  
-                <Image source={require('../src/image/geriDonus.png')}
-                    style={{ height: 50, width: 50, marginTop: -350, marginLeft: 350 }} resizeMode='contain' />
-            </TouchableOpacity>
-            <View style={styles.articlesContainer}>
+ export default class Articles extends React.Component{
+      constructor(props){
+          super(props);
+          this.state=
+            {
+            currentUser:null,
+            errorMessage:null
+            }
+        }
+        componentDidMount(){
+            const{currentUser}=firebaseAuth;
+            this.state={currentUser}
+        }
+        render(){
+            const {currentUser}=this.state
+            return(
+                <ImageBackground source={require('../src/image/background.jpg')} style={styles.BackgroundImage}>
+                    <View style={styles.container}>
+                        <TouchableOpacity style={styles.cikisButon} onPress={() => firebase.auth().signOut()} >
+                            <Image source={require('../src/image/geriDonus.png')}
+                            style={{ height: 50, width: 50, marginTop: 0 }} resizeMode='contain' />
+                        </TouchableOpacity>
+                        <View style={styles.articlesContainer}>
+                        <TouchableOpacity 
+                        style={styles.buttonContainer}
+                        onPress={()=>this.props.navigation.navigate('qrOkut')}>
+                            <Text style={styles.ButtonText}>QR Okut</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                         style={styles.buttonContainer1}
+                         onPress={()=>this.props.navigation.navigate('servis')}>
+                            <Text style={styles.ButtonText}>Servis Yoğunluk Sorgula</Text>
+                        </TouchableOpacity>
+                        </View>
+                    </View>
+                </ImageBackground>
+            )
+        }
+    
+ };
 
-                <TouchableOpacity style={styles.buttonContainer}>
-                    <Text style={styles.girisButtonText}>QR Okut</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonContainer}>
-                    <Text style={styles.girisButtonText}>Servis Yoğunluk Sorgula</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
-            </ImageBackground>
-    );
-};
 
 
-// define your styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center'
     },
-    heading: {
-        fontSize: 20,
-        color: 'black',
-        marginTop: 200,
-        marginBottom: 10
+    cikisButon:{
+        left:150
     },
-    content: {
-        marginTop: 200,
-        fontSize: 19,
-    },
-    girisButtonText: {
+    ButtonText: {
         textAlign: 'center',
         color: 'white',
         fontSize: 18,
         paddingTop: 5
     },
     buttonContainer: {
+        backgroundColor: 'black',
+        padding: 5,
+        height: 55,
+        width: 300,
+        borderRadius: 8,
+        marginTop: 350
+    },
+    buttonContainer1: {
         backgroundColor: 'black',
         padding: 5,
         height: 55,
@@ -66,6 +84,3 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     }
 });
-
-//make this component available to the app
-export default Articles;
