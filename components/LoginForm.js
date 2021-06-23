@@ -26,13 +26,13 @@ export default class LoginForm extends React.Component{
                 {this.state.errorMessage}
                 </Text>}
                 <TextInput
-                placeholder="Sicil No"
+                placeholder="  Sicil No"
                 autoCapitalize="none"
                 style={styles.input}
                 onChangeText={email=>this.setState({email})}
                 value={this.state.email}/>
                 <TextInput
-                placeholder="şifre"
+                placeholder="  Şifre"
                 autoCapitalize="none"
                 style={styles.input}
                 secureTextEntry={true}
