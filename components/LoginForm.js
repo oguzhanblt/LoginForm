@@ -22,7 +22,7 @@ export default class LoginForm extends React.Component{
                     style={{height:150,width:300,marginTop:60}}resizeMode='contain'/>                             
                 </View>
                 {this.state.errorMessage &&
-                <Text style={{colot:'red'}}>
+                <Text style={{color:'red'}}>
                 {this.state.errorMessage}
                 </Text>}
                 <TextInput

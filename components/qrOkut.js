@@ -1,27 +1,11 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
- import React, { useState } from 'react';
+import React, { useState } from 'react';
  import {
-   SafeAreaView,
    StyleSheet,
-   ScrollView,
    View,
    Text,
-   StatusBar,
    TouchableOpacity,
-   Button
+   ImageBackground,
  } from 'react-native';
- 
- import {
-   Header,
-   Colors,
- } from 'react-native/Libraries/NewAppScreen';
  
  import QRCodeScanner from 'react-native-qrcode-scanner';
  
@@ -42,85 +26,64 @@
  
    return (
      <>
-       <StatusBar barStyle="dark-content" />
-       <SafeAreaView>
-         <ScrollView
-           contentInsetAdjustmentBehavior="automatic"
-           style={styles.scrollView}>
-           <Header />
-           <View style={styles.body}>
-             { result &&
-               <View style={styles.sectionContainer}>
-                 <Text style={styles.centerText}>{result}</Text>
-               </View>
-             }
-             { !scan &&
-               <View style={styles.sectionContainer}>
-                 <Button
-                   title="Start Scan"
-                   color="#f194ff"
-                   onPress={this.startScan}
-                 />
-               </View>
-             }
+     <ImageBackground source={require('../src/image/background.jpg')} style={styles.BackgroundImage}>
+           
+            { result &&
+              <View style={styles.sectionContainer}>
+                <Text style={styles.centerText}>{result}</Text>
+              </View>
+            }
              { scan &&
                <View style={styles.sectionContainer}>
-                 <QRCodeScanner
-                   reactivate={true}
-                   showMarker={true}
-                   ref={(node) => { this.scanner = node }}
-                   onRead={this.onSuccess}
-                   topContent={
-                     <Text style={styles.centerText}>
-                       Scan your QRCode!
-                     </Text>
-                   }
-                   bottomContent={
-                     <TouchableOpacity style={styles.buttonTouchable} onPress={() => setScan(false)}>
-                       <Text style={styles.buttonText}>Cancel Scan</Text>
-                     </TouchableOpacity>
-                   }
-                 />
-               </View>
+               <QRCodeScanner
+                 reactivate={true}
+                 showMarker={true}
+                 ref={(node) => { this.scanner = node }}
+                 onRead={this.onSuccess}
+                 topContent={
+                   <Text style={styles.centerText}>
+                     Kamera Açılıyor
+                   </Text>
+                 }
+                 bottomContent={
+                   <TouchableOpacity style={styles.buttonTouchable} onPress={() => setScan(false)}>
+                     <Text style={styles.buttonText}>Cancel Scan</Text>
+                   </TouchableOpacity>
+                 }
+               />
+             </View>
              }
-           </View>
-         </ScrollView>
-       </SafeAreaView>
+             { !scan &&
+               <TouchableOpacity onPress={this.startScan} style={styles.buttonContainer}>
+               <View>
+                   <Text style={styles.girisButtonText}>Okut</Text>
+               </View>
+           </TouchableOpacity>
+
+             }
+     </ImageBackground>
      </>
    );
  };
  
  const styles = StyleSheet.create({
-   scrollView: {
-     backgroundColor: Colors.lighter,
-   },
-   body: {
-     backgroundColor: Colors.white,
-   },
-   sectionContainer: {
-     marginTop: 32,
-   },
-   sectionTitle: {
-     fontSize: 24,
-     fontWeight: '600',
-     color: Colors.black,
-   },
-   sectionDescription: {
-     marginTop: 8,
-     fontSize: 18,
-     fontWeight: '400',
-     color: Colors.dark,
-   },
-   highlight: {
-     fontWeight: '700',
-   },
-   footer: {
-     color: Colors.dark,
-     fontSize: 12,
-     fontWeight: '600',
-     padding: 4,
-     paddingRight: 12,
-     textAlign: 'right',
+  buttonText: {
+    fontSize: 21,
+    color: 'rgb(0,122,255)',
+  },
+  buttonTouchable: {
+    padding: 16,
+  },
+  centerText: {
+    flex: 1,
+    fontSize: 18,
+    padding: 32,
+    color: '#777',
+  },
+   startContainer:{
+     width:250,
+     height:150,
+     marginTop:500
    },
    centerText: {
      flex: 1,
@@ -128,17 +91,25 @@
      padding: 32,
      color: '#777',
    },
-   textBold: {
-     fontWeight: '500',
-     color: '#000',
-   },
-   buttonText: {
-     fontSize: 21,
-     color: 'rgb(0,122,255)',
-   },
-   buttonTouchable: {
-     padding: 16,
-   },
+   BackgroundImage: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center'
+},
+buttonContainer:{
+  backgroundColor:'black',
+  padding:5,
+  width:200,
+  height:50,  
+  borderRadius:8,
+  marginTop:400
+},
+girisButtonText:{
+  textAlign:'center',
+  color:'white',
+  fontSize:18,
+  paddingTop:5
+},
  });
  
  export default qrOkut;
