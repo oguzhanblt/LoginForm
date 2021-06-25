@@ -17,6 +17,7 @@ import  firebase  from 'firebase';
             const{currentUser}=firebaseAuth;
             this.state={currentUser}
         }
+       
         render(){
             const {currentUser}=this.state
             return(
@@ -24,20 +25,17 @@ import  firebase  from 'firebase';
                     <View style={styles.container}>
                         <TouchableOpacity style={styles.cikisButon} onPress={() => firebase.auth().signOut()} >
                             <Image source={require('../src/image/geriDonus.png')}
-                            style={{ height: 40, width: 40, marginTop: 0 }} resizeMode='contain' />
+                            style={{ height: 35, width: 35, marginTop: 20,right:20 }} resizeMode='contain' />
                         </TouchableOpacity>
                     <Image source={require('../src/image/Logo.png')}
-                            style={{ height: 120, width: 150, marginTop: 0 }} resizeMode='contain' />
+                            style={{ height: 120, width: 200, marginTop: 0 }} resizeMode='contain' />
+                           
+            
                         <View style={styles.articlesContainer}>
                         <TouchableOpacity 
                         style={styles.buttonContainer}
                         onPress={()=>this.props.navigation.navigate('qrOkut')}>
                             <Text style={styles.ButtonText}>QR Okut</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                         style={styles.buttonContainer1}
-                         onPress={()=>this.props.navigation.navigate('servis')}>
-                            <Text style={styles.ButtonText}>Servis Yoğunluk Sorgula</Text>
                         </TouchableOpacity>
                         </View>
                     </View>
@@ -55,21 +53,21 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     cikisButon:{
-        left:150
+        left:170
     },
     ButtonText: {
         textAlign: 'center',
         color: 'white',
         fontSize: 18,
-        paddingTop: 5
+        paddingTop: 8
     },
     buttonContainer: {
         backgroundColor: 'black',
         padding: 5,
-        height: 55,
+        height: 50,
         width: 300,
         borderRadius: 8,
-        marginTop: 350
+        marginTop: 370
     },
     buttonContainer1: {
         backgroundColor: 'black',

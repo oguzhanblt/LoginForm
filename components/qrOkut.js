@@ -1,36 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
  import {
    StyleSheet,
    View,
    Text,
    TouchableOpacity,
    ImageBackground,
+   BackHandler,
+   Image,
+   Button,
  } from 'react-native';
- 
+ import base64 from 'react-native-base64';
  import QRCodeScanner from 'react-native-qrcode-scanner';
+ import firebase from "firebase/app";
+ import "firebase/database";
  
- const qrOkut = () => {
- 
-   const [scan, setScan] = useState(false)
-   const [result, setResult] = useState()
- 
-   onSuccess = (e) => {
-     setResult(e.data)
-     setScan(false)
-   }
- 
-   startScan = () => {
-     setScan(true)
-     setResult()
-   }
- 
+const qrOkut = () => {
+  const [scan, setScan] = useState(false)
+  const [result, setResult] = useState()
+  const [currentDate, setCurrentDate]= useState(' ')
+  onSuccess = (e) => {
+    setResult(e.data)
+    setScan(false)
+  }
+  
+  
+    startScan = () => {
+      setScan(true)
+      setResult()
+    }
+    useEffect(() => {
+      this.startScan(true)
+    if(useState.setScan==true){
+      writeUserData
+    }
+      var year=new Date().getFullYear();
+      var date=new Date().getDate();
+      var month=new Date().getMonth()+1;
+      setCurrentDate(
+        year + '/' + month + '/' + date
+      );
+    }, []);
+    function writeUserData(){
+      firebase.database().ref('/'+currentDate).push({
+        mail:(firebase.auth().currentUser.email),
+        servis:(base64.decode(result))
+      })
+     
+
+    }
    return (
      <>
      <ImageBackground source={require('../src/image/background.jpg')} style={styles.BackgroundImage}>
            
             { result &&
-              <View style={styles.sectionContainer}>
-                <Text style={styles.centerText}>{result}</Text>
+              <View style={styles.sectionContainerOnay}>
+                <TouchableOpacity onPress={writeUserData} title={base64.decode(result)}> 
+                <Image source={require('../src/image/QRonaylandi.png')}
+                    style={{height:200,width:200,marginTop:200,marginBottom:25 }}resizeMode='contain'/>
+                </TouchableOpacity>
+                <Text style={{fontSize:20,fontWeight: 'bold'}}>QR Onaylandı.</Text>
               </View>
             }
              { scan &&
@@ -41,26 +69,19 @@ import React, { useState } from 'react';
                  ref={(node) => { this.scanner = node }}
                  onRead={this.onSuccess}
                  topContent={
-                   <Text style={styles.centerText}>
-                     Kamera Açılıyor
-                   </Text>
-                 }
+                  <Image source={require('../src/image/vbLogo.png')}
+                    style={{height:40,width:40,marginBottom:60}}resizeMode='contain'/>
+                }
                  bottomContent={
-                   <TouchableOpacity style={styles.buttonTouchable} onPress={() => setScan(false)}>
-                     <Text style={styles.buttonText}>Cancel Scan</Text>
+                   <TouchableOpacity style={styles.buttonTouchable} onPress={() =>BackHandler('Articles')}>
+                     <Text style={styles.buttonText}>Telefonunuzu QR kodu okuyabilecek şekilde tutunuz.</Text>
                    </TouchableOpacity>
                  }
                />
              </View>
              }
-             { !scan &&
-               <TouchableOpacity onPress={this.startScan} style={styles.buttonContainer}>
-               <View>
-                   <Text style={styles.girisButtonText}>Okut</Text>
-               </View>
-           </TouchableOpacity>
 
-             }
+            
      </ImageBackground>
      </>
    );
@@ -68,48 +89,28 @@ import React, { useState } from 'react';
  
  const styles = StyleSheet.create({
   buttonText: {
-    fontSize: 21,
-    color: 'rgb(0,122,255)',
+    fontSize: 16,
+    color: 'black',
+    marginTop:30,
   },
   buttonTouchable: {
     padding: 16,
   },
-  centerText: {
-    flex: 1,
-    fontSize: 18,
-    padding: 32,
-    color: '#777',
-  },
-   startContainer:{
-     width:250,
-     height:150,
-     marginTop:500
-   },
    centerText: {
      flex: 1,
      fontSize: 18,
      padding: 32,
-     color: '#777',
+     color: '#797979',
    },
    BackgroundImage: {
     width: '100%',
     height: '100%',
     alignItems: 'center'
 },
-buttonContainer:{
-  backgroundColor:'black',
-  padding:5,
-  width:200,
-  height:50,  
-  borderRadius:8,
-  marginTop:400
-},
-girisButtonText:{
-  textAlign:'center',
-  color:'white',
-  fontSize:18,
-  paddingTop:5
-},
+sectionContainerOnay:{
+  alignItems:'center',
+  justifyContent:'center',
+}
  });
  
  export default qrOkut;
