@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet,ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet,ActivityIndicator ,Image} from 'react-native';
 import { firebaseAuth } from '../config';
 
 
@@ -15,9 +15,8 @@ export default class Loading extends React.Component{
     render(){
         return(
             <View style={styles.container}>
-                <Text>
-                    Loading...
-                </Text>
+                <Image source={require('../src/image/loadingfoto.png')}
+                             resizeMode='contain' />
                 <ActivityIndicator size="large"/>
             </View>
         )
@@ -26,7 +25,6 @@ export default class Loading extends React.Component{
 
 }
 
-// define your styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,

@@ -45,6 +45,7 @@ const qrOkut = () => {
         mail:(firebase.auth().currentUser.email),
         servis:(base64.decode(result))
       })
+      .then(()=>firebase.auth().signOut())
      
 
     }
@@ -89,7 +90,7 @@ const qrOkut = () => {
  
  const styles = StyleSheet.create({
   buttonText: {
-    fontSize: 16,
+    fontSize: 15,
     color: 'black',
     marginTop:30,
   },
