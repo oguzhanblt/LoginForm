@@ -1,7 +1,6 @@
 import *as React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity,Image, Button,ImageBackground } from 'react-native';
 import { firebaseAuth } from '../config';
-import { Component } from 'react';
 import  firebase  from 'firebase';
 
  export default class Articles extends React.Component{

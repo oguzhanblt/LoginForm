@@ -56,10 +56,9 @@ const qrOkut = () => {
             { result &&
               <View style={styles.sectionContainerOnay}>
                 <TouchableOpacity onPress={writeUserData} title={base64.decode(result)}> 
-                <Image source={require('../src/image/QRonaylandi.png')}
+                  <Image source={require('../src/image/QrOnaylaButon.png')}
                     style={{height:200,width:200,marginTop:200,marginBottom:25 }}resizeMode='contain'/>
                 </TouchableOpacity>
-                <Text style={{fontSize:20,fontWeight: 'bold'}}>QR Onaylandı.</Text>
               </View>
             }
              { scan &&
@@ -111,6 +110,7 @@ const qrOkut = () => {
 sectionContainerOnay:{
   alignItems:'center',
   justifyContent:'center',
+  position:'relative'
 }
  });
  
