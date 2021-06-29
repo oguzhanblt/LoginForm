@@ -56,8 +56,9 @@ const qrOkut = () => {
             { result &&
               <View style={styles.sectionContainerOnay}>
                 <TouchableOpacity onPress={writeUserData} title={base64.decode(result)}> 
-                  <Image source={require('../src/image/QrOnaylaButon.png')}
-                    style={{height:200,width:200,marginTop:200,marginBottom:25 }}resizeMode='contain'/>
+                <Text style={styles.bilgi}>Göndermek İçin Tıklayınız.</Text>
+                  <Image source={require('../src/image/click.png')}
+                    style={{height:200,width:200,marginTop:15,marginBottom:25 }}resizeMode='contain'/>
                 </TouchableOpacity>
               </View>
             }
@@ -111,6 +112,12 @@ sectionContainerOnay:{
   alignItems:'center',
   justifyContent:'center',
   position:'relative'
+},
+bilgi:{
+  marginTop:250,
+  fontSize:17,
+  fontWeight: 'bold',
+  left:10
 }
  });
  

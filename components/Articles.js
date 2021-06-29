@@ -1,5 +1,5 @@
 import *as React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity,Image, Button,ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity,Image,ImageBackground } from 'react-native';
 import { firebaseAuth } from '../config';
 import  firebase  from 'firebase';
 
@@ -30,11 +30,18 @@ import  firebase  from 'firebase';
                             style={{ height: 120, width: 200, marginTop: 0 }} resizeMode='contain' />
                            
             
-                        <View style={styles.articlesContainer}>
+                        <View>
                         <TouchableOpacity 
                         style={styles.buttonContainer}
                         onPress={()=>this.props.navigation.navigate('qrOkut')}>
                             <Text style={styles.ButtonText}>QR Okut</Text>
+                        </TouchableOpacity>
+                        </View>
+                        <View>
+                        <TouchableOpacity 
+                        style={styles.buttonContainer2}
+                        onPress={()=>this.props.navigation.navigate('ServisBilgileri')}>
+                            <Text style={styles.ButtonText}>Servis Bilgileri</Text>
                         </TouchableOpacity>
                         </View>
                     </View>
@@ -64,9 +71,17 @@ const styles = StyleSheet.create({
         backgroundColor: 'black',
         padding: 5,
         height: 50,
-        width: 300,
+        width: 310,
         borderRadius: 8,
-        marginTop: 370
+        marginTop: 350
+    },
+    buttonContainer2: {
+        backgroundColor: 'black',
+        padding: 5,
+        height: 50,
+        width: 310,
+        borderRadius: 8,
+        marginTop:10
     },
     buttonContainer1: {
         backgroundColor: 'black',
